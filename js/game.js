@@ -4,9 +4,11 @@ const maxHits = 11;
 let hits = 1;
 let firstHitTime = getTimestamp();
 let lastTarget = 0;
-let miss
+
+let missCount = 0;
 
 function round() {
+  $(".miss").removeClass('miss');
   $(".row").removeClass('none');
   // FIXME: надо бы убрать "target" прежде чем искать новый - ok
   $(lastTarget).removeClass("target").html("");
@@ -29,7 +31,8 @@ function endGame() {
   let totalPlayedSeconds = Number(totalPlayedMillis / 1000).toPrecision(3);
   $("#total-time-played").text(totalPlayedSeconds);
   $("#win-message").removeClass("d-none");
-
+  let totalmiss = missCount;
+  $("#total-miss").text(totalmiss);
 }
 
 function handleClick(event) {
@@ -38,11 +41,12 @@ function handleClick(event) {
   // FIXME: убирать текст со старых таргетов. Кажется есть .text? - ok
   if ($(event.target).hasClass("target")) {
     hits = hits + 1;
+
     round(); 
   }
   else {
-    miss = $(event.target).addClass("miss")
-        
+    $(event.target).addClass("miss")
+    missCount = missCount + 1;
   } 
   
       // TODO: как-то отмечать если мы промахнулись? См CSS класс .miss
@@ -53,6 +57,7 @@ function init() {
   // TODO: заказчик просил отдельную кнопку, запускающую игру а не просто по загрузке - ok
   $("#button-start").on('click', function(event) {
     event.preventDefault();
+    $(".container").removeClass('none')
     round();
   $("#button-reload").removeClass('none');
     /* Act on the event */
@@ -69,7 +74,7 @@ function init() {
     location.reload();
     /* Act on the event */
   });
-   $(".row").addClass('none'); 
+   // $(".row").addClass('none'); 
 }
 
 $(document).ready(init);
