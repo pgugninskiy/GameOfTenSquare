@@ -12,11 +12,9 @@
 
   </head>
   <body>
-
-    <div class="container" id="pool">
-      <h1>10 квадратов</h1>
-
-      
+        <h1 style="margin-left: 250px;">10 квадратов</h1>
+    <div class="container none" id="pool">
+            
       <div class="row">
         <div class="col game-field align-text-bottom" id="slot-11"></div>
         <div class="col game-field align-text-bottom" id="slot-12"></div>
@@ -69,6 +67,7 @@
       <div id="win-message" class="d-none">
         <!-- TODO: можно добавить красные квадратики с отрицательным весом и делать счёт попаданий в конце как разницу очков за попадание минус штрафные -->
         <h2>Вы нашли 10 зелёных квадратов за <span id="total-time-played"></span> секунд</h2>
+        <h2>Вы совершили <span id="total-miss"></span> ошибок(ку)</h2>
       </div>
       
     </div>
